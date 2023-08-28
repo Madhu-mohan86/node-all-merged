@@ -1,0 +1,8 @@
+"use strict";
+let printnumbers=(arr)=>{
+    arr.forEach((element)=> {
+        console.log(element);
+    });
+}
+
+printnumbers([1,2,3,4,5])

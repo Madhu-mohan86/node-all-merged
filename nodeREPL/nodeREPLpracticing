@@ -1,0 +1,62 @@
+class Sarpatta{
+head:'vaathi',
+main:'kabi',
+sub:'vaathi son',
+}
+let sp=new Sarpatta();
+console.log(sp.main);
+
+class Sarpatta{
+this.head:'vaathi',
+this.main:'kabi',
+this.sub:'vathison',
+}
+let sp=new Sarpatta();
+console.log(sp.main);
+
+class Sarpatta{
+members(){
+this.head:'vaathi',
+this.main:'kabi',
+this.sub:'vs',
+}}
+let sp=new Sarpatta();
+console.log(sp.main);
+
+.editoe
+// Entering editor mode (Ctrl+D to finish, Ctrl+C to cancel)
+console.log('madhu');
+
+class Sarpatta {
+  constructor() {
+    this.head = 'vaathiyaar';
+    this.main = 'kabilan';
+    this.sub = 'vaathiyaar son';
+  }
+}
+
+let sp = new Sarpatta();
+console.log(sp.main); // Output: kabilan
+
+class Sarpatta{
+members(name){
+console.log(${name});
+class Sarpatta{
+... members(name){
+class Sarpatta{
+members(name){
+console.log(name);
+}
+let mem=new Sarpatta();
+mem.main
+mem.sub
+mem.constructor
+class Idiyaapam{
+members(name){
+console.log(name);
+}}
+let member=new Idiyaapam();
+member.members('vembuli');
+member.members('tiger')
+
+
