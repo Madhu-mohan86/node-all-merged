@@ -1,0 +1,6 @@
+[submodule "node-with-mongoose"]
+	path = node-with-mongoose
+	url = https://github.com/scully86/node-with-mongoose.git
+[submodule "node-connected-with-database"]
+	path = node-connected-with-database
+	url = https://github.com/scully86/node-connected-with-database.git
