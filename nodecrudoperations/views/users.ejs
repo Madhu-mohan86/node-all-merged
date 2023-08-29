@@ -1,0 +1,21 @@
+<h2>Users Table</h2>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>password</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% users.forEach(user => { %>
+    <tr>
+      <td><%= user.name %></td>
+      <td><%= user.email %></td>
+      <td><%= user.password %></td>
+      <td><a href="<%=`/user/${user._id}/edit`%>"> edit </a></td>
+      <td><a href="<%=`/user/${user._id}/delete?_method=DELETE`%>"> delete </a></td>
+    </tr>
+    <% }); %>
+  </tbody>
+</table>
