@@ -1,21 +1,21 @@
 const express = require("express");
-
 const app = express();
-
 const mongoose = require("mongoose");
+const bodyParser = require("body-parser");
+const methodOverride = require("method-override");
+const cookieParser = require("cookie-parser");
+const expressSession = require("express-session");
+const connectFlash = require("connect-flash");
+const router = express.Router(); 
+
+const homepageroute=require('./routes/homerouter')
+
+const userroute=require('./routes/userrouter')
 
 const homepagecontroller = require("./controllers/homecontroller");
-
-const usercontroller=require('./controllers/usercontroller');
-
-const bodyParser = require("body-parser");
-
-const methodoverride=require("method-override")
-
-const router=express.Router()
+const usercontroller = require("./controllers/usercontroller");
 
 mongoose.connect("mongodb://localhost:27017/", { useNewUrlParser: true });
-
 mongoose.connection.once("open", (error) => {
   if (error) {
     console.log("connecting error with database");
@@ -24,29 +24,45 @@ mongoose.connection.once("open", (error) => {
   }
 });
 
-app.use(methodoverride("_method",{
-  methods:["POST","GET"]
-}))
+app.use(
+  methodOverride("_method", {
+    methods: ["POST", "GET"],
+  })
+);
 
-app.use(bodyParser.urlencoded({extended:true}))
+app.use(cookieParser("007forcookie"));
 
-app.use(bodyParser.json())
+app.use(
+  expressSession({
+    secret: "007forcookie",
+    cookie: {
+      maxAge: 4000000,
+    },
+    resave: false,
+    saveUninitialized: false,
+  })
+);
 
-app.set("view engine","ejs")
+app.use(connectFlash());
 
-app.get("/", homepagecontroller.gethomepage);
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
-app.get("/user",homepagecontroller.getuserpage);
+app.set("view engine", "ejs");
 
-app.post("/user",usercontroller.postdetails)
+app.use(router); 
 
-app.get("/viewusers",usercontroller.showdetails)
+router.use('/',homepageroute)
 
-app.get("/user/:id/edit",usercontroller.editdetails)
+router.use('/user',userroute)
 
-app.put("/user/:id/update",usercontroller.updatedetails)
 
-app.delete("/user/:id/delete",usercontroller.deletedetails)
+router.get("/login", homepagecontroller.getloginpage);
+router.post("/login",usercontroller.loginchecker);
+router.get("/viewusers", usercontroller.showdetails);
+router.get("/user/:id/edit", usercontroller.editdetails);
+router.put("/user/:id/update", usercontroller.updatedetails);
+router.delete("/user/:id/delete", usercontroller.deletedetails);
 
 app.set("port", process.env.PORT || 3000);
 

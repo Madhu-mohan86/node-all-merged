@@ -8,5 +8,9 @@ module.exports = {
   getuserpage:(request,response)=>{
     console.log(request.method);
     response.sendFile(path.join(__dirname,"../views/user.html"));
+  },
+  getloginpage:(request,response)=>{
+    console.log(request.method);
+    response.sendFile(path.join(__dirname,"../views/login.html"))
   }
 };

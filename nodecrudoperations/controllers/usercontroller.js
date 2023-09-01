@@ -17,7 +17,23 @@ module.exports = {
       .catch((error) => {
         console.log("the errors in creating the database", error);
       })
-      .then(response.render("thanks"));
+      const flashmesage=request.flash("success","account created successfully")
+      response.render("thanks",{flashmessage:flashmesage});
+  },
+  loginchecker:async (request,response)=>{
+    var details=await userschema.findOne({email:request.body.email})
+    console.log(details);
+    console.log(details.password)
+    console.log(request.body.password)
+    var checked=await bcrypt.compare(request.body.password,details.password)
+
+    console.log(checked)
+    if(checked){
+        response.render("loginsuccess")
+    }
+    else{
+        console.log("check your password")
+    }
   },
   showdetails: async (request, response) => {
     var details = await userschema
